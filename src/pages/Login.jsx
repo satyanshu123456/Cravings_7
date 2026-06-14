@@ -1,10 +1,9 @@
 import React from "react";
 
-
 const Login = () => {
   return (
     <>
-      <div>ABCD</div>
+      <div>Login</div>
     </>
   );
 };
