@@ -4,7 +4,7 @@ const Login = () => {
   return (
     <>
       <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
-        <div className=" h-100 w-90 rounded-md m-20 bg-gradient-to-r from-purple-500 to-blue-500 shadow-lg">
+        <div className=" h-100 w-90 rounded-2xl m-20 bg-gradient-to-r from-purple-500 to-blue-500 shadow-lg">
         <div className="p-4">
           <h6 className="opacity-50">Login to your account:-</h6>
           <label htmlFor="name" className>
@@ -40,8 +40,22 @@ const Login = () => {
             className="w-full px-3 py-2 border border-gray-300 focus:outline-none"
           />
 
-          <div className="mt-13 text-center">
-            <button className="border border-gray-200 h-13 w-23 bg-blue-600 text-white rounded-md">Submit</button>
+          <div className="flex justify-between">
+            <div>
+            <input type="checkbox" />
+          <span> Remember me</span>
+          </div>
+
+          <div><p className="text-red-600">Forget password?</p></div>
+
+          
+          </div>
+
+          <div className="mt-10 text-center">
+            <button className="border border-gray-200 h-13 w-23 bg-blue-600 text-white rounded-md">Login</button>
+          </div>
+          <div className="text-center">
+            <p>Don't have any account?</p>
           </div>
         </div>
       </div>

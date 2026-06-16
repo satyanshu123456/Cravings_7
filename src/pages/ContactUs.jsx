@@ -3,7 +3,7 @@ import React from "react";
 const ContactUs = () => {
   return (
     <>
-      <div className="bg-gradient-to-r from-emerald-400 to-cyan-500min-h-screen w-full bg-cover bg-center flex items-center justify-center">
+      <div className="bg-gradient-to-r from-emerald-400 to-cyan-500min w-full min-h-screen m-0 p-0 bg-cover bg-no-repeat bg-fixed bg-cover bg-center flex items-center justify-center">
         <div className="px-[130px] py-20 ">
           <div className="w-[450px] rounded-2xl bg-gradient-to-r from-orange-400 to-indigo-600">
             <div className="p-3 text-center">
