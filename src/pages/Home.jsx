@@ -18,7 +18,7 @@ const Home = () => {
             </button>
 
             <button className="mt-4 px-6 py-2 bg-blue-600  text-white font-semibold rounded-lg">
-              Jay hind dosto
+              Login mat kro
             </button>
           </div>
         </div>
