@@ -2,6 +2,12 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import connectDB from "./src/config/db.js";
+import morgan from "morgan";
+import cors from "cors";
+
+
+
+
 const app = express();
 
 //Default API
