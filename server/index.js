@@ -3,8 +3,8 @@ dotenv.config();
 
 import express from "express";
 import connectDB from "./src/config/dbConnection.config.js";
-import AuthRouter from "./src/router/auth.route.js";
-import PublicRouter from "./src/router/public.route.js";
+import AuthRouter from "./src/routers/auth.route.js";
+import PublicRouter from "./src/routers/public.route.js";
 import morgan from "morgan";
 import cors from "cors";
 
