@@ -1,79 +1,197 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import deliveryboy from "../assets/deliberyboy.png";
+import api from "../config/api.config.js";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [registerData, setRegisterData] = useState({
+    fullName: "",
+    email: "",
+    gender: "",
+    dob: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [validateError, setValidateError] = useState();
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setRegisterData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (registerData.password !== registerData.confirmPassword) {
+      setValidateError("Passwords do not match");
+      return;
+    }
+
+    setValidateError("");
+    console.log("Register data submitted:", registerData);
+
+    const payload = {
+      fullName: registerData.fullName,
+      email: registerData.email.toLowerCase(),
+      gender: registerData.gender,
+      dob: registerData.dob,
+      phone: registerData.phone,
+      password: registerData.password,
+    };
+
+    try {
+      const res = await api.post("/auth/register", payload);
+      alert(res.data.message);
+    } catch (error) {
+      console.log(res?.data?.message || error.message);
+    }
+  };
+
+  const inputClass =
+    "border p-2 rounded focus:outline-none focus:ring-2 focus:ring-(--accent)";
+
   return (
     <>
-      <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-cyan-500  to-blue-600">
-        <div className=" h-130 w-90 rounded-xl m-20 bg-gradient-to-tr from-indigo-600 to-blue-500 shadow-lg">
-        <div className="p-4">
-          <h6 className="opacity-50">Registration Now:-</h6>
-          <label htmlFor="name" className>
-            Full Name:-
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Enter user name"
-            className="w-full px-3 py-2 border border-gray-300 focus:outline-none"
-          />
+      <div className="min-h-[90vh] bg-linear-to-r from-(--secondary) to-(--primary) grid grid-cols-2 p-10">
+        <div className="hidden md:block">
+          <img src={deliveryboy} alt="" className="rotate-y-180" />
+        </div>
+        <div className="w-2xl bg-(--background) rounded shadow p-10 flex flex-col justify-center">
+          <div className="text-xl font-semibold mb-4">Create an Account</div>
 
-          <label htmlFor="name" className>
-            Email:-
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter user email"
-            className="w-full px-3 py-2 border border-gray-300 focus:outline-none"
-          />
+          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+            {/* Full Name */}
+            <div className="col-span-2 flex flex-col gap-2">
+              <label htmlFor="fullName">Full Name</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                value={registerData.fullName}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
 
-          <label htmlFor="name" className>
-            Mobile Number:-
-          </label>
-          <input
-            type="number"
-            name="number"
-            id="number"
-            placeholder="Enter your number"
-            className="w-full px-3 py-2 border border-gray-300 focus:outline-none"
-          />
+            {/* Email */}
+            <div className="flex flex-col gap-2">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={registerData.email}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
+            {/* Phone */}
+            <div className="flex flex-col gap-2">
+              <label htmlFor="phone">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={registerData.phone}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
 
-          <label htmlFor="name" className>
-            Password:-
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Enter user password"
-            className="w-full px-3 py-2 border border-gray-300 focus:outline-none"
-          />
+            {/* Gender */}
+            <div className="flex flex-col gap-2">
+              <label htmlFor="gender">Gender</label>
+              <select
+                id="gender"
+                name="gender"
+                value={registerData.gender}
+                onChange={handleChange}
+                className={inputClass}
+              >
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
 
-          <label htmlFor="name" className>
-            Confirm Password:-
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Confirm your password"
-            className="w-full px-3 py-2 border border-gray-300 focus:outline-none"
-          />
+            {/* Date of Birth */}
+            <div className="flex flex-col gap-2">
+              <label htmlFor="dob">Date of Birth</label>
+              <input
+                type="date"
+                id="dob"
+                name="dob"
+                value={registerData.dob}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
 
-          <input type="checkbox"/>
-          <span> I agree to the terms and conditions.</span>
+            {/* Password */}
+            <div className="flex flex-col gap-2">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={registerData.password}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
 
-          <div className="mt-10 text-center">
-            <button className="border border-gray-200 h-13 w-23 bg-blue-600 text-white rounded-md">Register</button>
-          </div>
+            {/* Confirm Password */}
+            <div className="flex flex-col gap-2">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={registerData.confirmPassword}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
 
-          <div className="text-center">
-            <p>Already Registered?<a href="#" className="text-red-600">Login here</a></p>
+            {validateError && (
+              <p className="text-red-500 text-sm col-span-2">{validateError}</p>
+            )}
+
+            <button
+              type="submit"
+              className="col-span-2 mt-2 bg-(--primary) text-white py-2 px-4 rounded hover:bg-(--accent)"
+            >
+              Register
+            </button>
+          </form>
+
+          <div className="mt-6 text-center space-y-2">
+            <p className="text-sm">
+              Already have an account?{" "}
+              <button
+                onClick={() => navigate("/login")}
+                className="text-(--primary) hover:underline font-semibold"
+              >
+                Login here
+              </button>
+            </p>
+            <p className="text-sm">
+              Having Trouble?{" "}
+              <button
+                onClick={() => navigate("/contact")}
+                className="text-(--primary) hover:underline font-semibold"
+              >
+                Contact Us
+              </button>
+            </p>
           </div>
         </div>
-      </div>
       </div>
     </>
   );
