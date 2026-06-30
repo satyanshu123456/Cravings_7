@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import deliveryboy from "../assets/deliberyboy.png";
+import api from "../config/api.config";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,6 +31,17 @@ const Login = () => {
       email: loginData.email.toLowerCase(),
       password: loginData.password,
     };
+
+    try {
+      const response = await api.post("/auth/login", payload);
+      toast.success(res.data.message);
+      console.log(res.data.data.fullName);
+    } catch (error) {
+      toast.error(
+        error.response.status + "|" + error.response?.data?.message ||
+          error.message,
+      );
+    }
   };
 
   const inputClass =

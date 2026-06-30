@@ -5,7 +5,7 @@ import ContactUs from "./pages/ContactUs";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
