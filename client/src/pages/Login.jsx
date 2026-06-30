@@ -33,7 +33,7 @@ const Login = () => {
     };
 
     try {
-      const response = await api.post("/auth/login", payload);
+      const res = await api.post("/auth/login", payload);
       toast.success(res.data.message);
       console.log(res.data.data.fullName);
     } catch (error) {
