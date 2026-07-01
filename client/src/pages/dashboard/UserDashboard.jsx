@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 const UserDashboard = () => {
-  const [userData, setUserData] = useState("");
+  
 
-  useEffect(() => {
-    setUserData(JSON.parse(sessionStorage.getItem("UserData")));
-  }, []);
-
+    const {user} = useAuth
   return (
     <>
       <div>Welcome Back!! {userData.fullName}</div>
