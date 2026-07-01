@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
+
+  const{user,isLogin,setIsLogin}
   return (
     <>
       <div className="bg-(--primary) text-(--primary-text) p-3 flex justify-between">
