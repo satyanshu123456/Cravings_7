@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const AuthContext = React.createContext();
 
-export const AuthProvider = ({children}) => {
-  const [user, setUser] = useState([]);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(
+    JSON.parse(sessionStorage.getItem("UserData")) || "",
+  );
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
@@ -22,9 +24,7 @@ export const AuthProvider = ({children}) => {
     setIsLogin,
   };
 
-  return <AuthContext.provider value={value}>{children}</AuthContext.provider>
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-
-export const useAuth = () =>  useContext(AuthContext);
-
+export const useAuth = () => useContext(AuthContext);

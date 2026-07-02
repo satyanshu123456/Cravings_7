@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const {setUser,setIsLogin} = useAuth();
+  const {setUser,setIsLogin, isLogin} = useAuth();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -39,7 +39,7 @@ const Login = () => {
       toast.success(res.data.message);
       sessionStorage.setItem("UserData", JSON.stringify(res.data.data));
       setUser(res.data.data);
-      setIsLogin(true);
+      // setIsLogin(true);
       navigate("/user/dashboard");
     } catch (error) {
       toast.error(
