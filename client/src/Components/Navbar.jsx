@@ -24,12 +24,12 @@ const Navbar = () => {
             <Link to={"/"} className="hover:underline">
             Home
           </Link>
-          <Link to={"/login"} className="hover:underline ">
+          {/* <Link to={"/login"} className="hover:underline ">
             Login
           </Link>
           <Link to={"/register"} className="hover:underline">
             Register
-          </Link>
+          </Link> */}
           <Link to={"/contact-us"} className="hover:underline">
             ContactUs
           </Link>
