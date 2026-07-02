@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Settings = () => {
+    const { user } =useAuth();
   return (
     <>
       <>
