@@ -14,7 +14,7 @@ export const RegisterUser = async (req, res, next) => {
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      const error = new Error("Email already registred");
+      const error = new Error("Email already registered");
       error.statusCode = 409;
       return next(error);
     }
@@ -34,10 +34,10 @@ export const RegisterUser = async (req, res, next) => {
       photo,
     });
 
-    res.status(201).json({ message: "User Created Successfully" });
+    res.status(201).json({ message: "User Created Successfully", data: newUser });
   } catch (error) {
     console.log(error.message);
-    next();
+    next(error);
   }
 };
 
@@ -53,7 +53,7 @@ export const LoginUser = async (req, res, next) => {
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      const error = new Error("Email not registred");
+      const error = new Error("Email not registered");
       error.statusCode = 404;
       return next(error);
     }
@@ -72,7 +72,7 @@ export const LoginUser = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
-    next();
+    next(error);
   }
 };
 
@@ -81,9 +81,9 @@ export const LogoutUser = async (req, res, next) => {
     //Controller Logic
     res.clearCookie("Oreo", { maxAge: 0 });
 
-    res.status(200).json({ message: "Logout Sucessfully" });
+    res.status(200).json({ message: "Logout Successfully" });
   } catch (error) {
     console.log(error.message);
-    next();
+    next(error);
   }
 };
