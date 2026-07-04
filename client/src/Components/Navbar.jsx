@@ -20,67 +20,69 @@ const Navbar = () => {
       toast.success(res.data.message);
     } catch (error) {
       toast.error(
-        error.response.status + " | " + error.response?.data?.message ||
+        error.response?.status + " | " +
+          error.response?.data?.message ||
           error.message,
       );
     }
+  };
+
   return (
     <>
-        <div className="bg-(--primary) text-lg text-(--primary-text) p-3 flex justify-between items-center">
+      <div className="bg-[var(--primary)] text-lg text-[var(--primary-text)] p-3 flex justify-between items-center">
         <div>Cravings</div>
 
         <div className="flex gap-4">
           <div className="flex gap-4 items-center">
             <Link to={"/"} className="hover:underline">
-            Home
-          </Link>
-          {/* <Link to={"/login"} className="hover:underline ">
-            Login
-          </Link>
-          <Link to={"/register"} className="hover:underline">
-            Register
-          </Link> */}
-          <Link to={"/contact-us"} className="hover:underline">
-            ContactUs
-          </Link>
+              Home
+            </Link>
+            {/* <Link to={"/login"} className="hover:underline ">
+              Login
+            </Link>
+            <Link to={"/register"} className="hover:underline">
+              Register
+            </Link> */}
+            <Link to={"/contact-us"} className="hover:underline">
+              ContactUs
+            </Link>
 
-          {isLogin ? (
-            <div className="border-s-2 flex justify-center items-center gap-4 px-4">
-              <div className="w-8 h-8 rounded-full overflow-hidden">
-                <img
-                  src={user.photo}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
+            {isLogin ? (
+              <div className="border-s-2 flex justify-center items-center gap-4 px-4">
+                <div className="w-8 h-8 rounded-full overflow-hidden">
+                  <img
+                    src={user.photo}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <Link
+                  to={"/user/dashboard"}
+                  className="hover:underline hover:text-[var(--accent)]"
+                >
+                  {user.fullName}
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="text-red-300 hover:text-red-600"
+                >
+                  <AiOutlineLogout />
+                </button>
               </div>
-              <Link
-                to={"/user/dashboard"}
-                className="hover:underline hover:text-(--accent)"
-              >
-                {user.fullName}
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="text-red-300 hover:text-red-600"
-              >
-                <AiOutlineLogout />
-              </button>
-            </div>
-          ) : (
-            <>
-              <Link
-                to={"/login"}
-                className="hover:underline hover:text-(--accent)"
-              >
-                Login
-              </Link>
-              <Link to={"/register"} className="hover:underline">
-                Register
-              </Link>
-            </>
-          )}
+            ) : (
+              <>
+                <Link
+                  to={"/login"}
+                  className="hover:underline hover:text-[var(--accent)]"
+                >
+                  Login
+                </Link>
+                <Link to={"/register"} className="hover:underline">
+                  Register
+                </Link>
+              </>
+            )}
           </div>
-          
         </div>
       </div>
     </>
