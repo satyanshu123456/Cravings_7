@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <div className="relative w-full h-auto">
-        <img src={HelpPage} alt="Help Page" className="w-full h-auto" />
+        <img src={HelpPage} alt="Help Page" className="w-full h-[100vh]" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black/40 rounded-lg p-4">
           <h1 className="text-4xl font-bold mb-2">Welcome to Cravings</h1>

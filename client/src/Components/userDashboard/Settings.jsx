@@ -41,7 +41,7 @@ const Settings = () => {
     <>
       <>
       
-      <div className="w-24 h-24 rounded-full overflow-hidden">
+      <div className="w-24 h-24 rounded-full overflow-hidden ">
         <img
           src={user.photo}
           alt=""
