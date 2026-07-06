@@ -7,18 +7,16 @@ import { MdOutlineAddAPhoto } from "react-icons/md";
 
 const CustomerSetting = () => {
   const { user, setUser } = useAuth();
-
-
   const [editingProfile, setEditingProfile] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
   const [profilePicPreview, setProfilePicPreview] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     fullName: user?.fullName || "",
     email: user?.email || "",
     phone: user?.phone || "",
   });
- 
 
   // Profile handlers
   const handleProfileChange = (e) => {
@@ -38,7 +36,6 @@ const CustomerSetting = () => {
       payload.append("displayPic", profilePic);
 
       const response = await api.put(`/user/edit-profile`, payload);
-
 
       setUser(response.data.data);
       sessionStorage.setItem("cravingUser", JSON.stringify(response.data.data));
@@ -142,8 +139,8 @@ const CustomerSetting = () => {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleProfileChange}
-                  className={`w-full px-3 py-2 border ${editingProfile ? "border-(--color-secondary) disabled:bg-(--color-secondary)" : "border-transparent"} rounded col-span-4`}
-                  disabled
+                  className={`w-full px-3 py-2 border ${editingProfile ? "border-(--color-secondary)" : "border-transparent"} rounded col-span-4`}
+                  disabled={!editingProfile}
                 />
 
                 <label className="block text-sm font-semibold mb-2">
@@ -154,8 +151,8 @@ const CustomerSetting = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleProfileChange}
-                  className={`w-full px-3 py-2 border ${editingProfile ? "border-(--color-secondary)" : "border-transparent"} rounded col-span-4`}
-                  disabled={!editingProfile}
+                  className={`w-full px-3 py-2 border ${editingProfile ? "border-(--color-secondary) text-(--color-secondary) disabled:bg-(--color-secondary)/50 cursor-not-allowed" : "border-transparent"} rounded col-span-4`}
+                  disabled
                 />
 
                 <label className="block text-sm font-semibold mb-2">
