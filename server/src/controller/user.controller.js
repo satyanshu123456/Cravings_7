@@ -36,8 +36,8 @@ export const EditUserProfile = async (req, res, next) => {
       console.log(result);
     }
 
-    existingUser.fullName = fullName;
-    existingUser.phone = phone;
+   existingUser.photo.url = result.secure_url;
+      existingUser.photo.publicId = result.public_id;
 
     await existingUser.save();
 
