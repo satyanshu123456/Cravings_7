@@ -22,6 +22,9 @@ export const EditUserProfile = async (req, res, next) => {
     }
 
     if (newPhoto) {
+      existingUser?.photo?.publicId &&
+        (await cloudinary.uploader.destroy(existingUser.photo.publicId));
+
       const b64 = Buffer.from(newPhoto.buffer).toString("base64");
       const dataURI = `data:${newPhoto.mimetype};base64,${b64}`;
       // console.log(dataURI.slice(0, 100));
@@ -37,6 +40,9 @@ export const EditUserProfile = async (req, res, next) => {
       existingUser.photo.url = result.secure_url;
       existingUser.photo.publicId = result.public_id;
     }
+
+    existingUser.fullName = fullName;
+    existingUser.phone = phone;
 
     await existingUser.save();
 
