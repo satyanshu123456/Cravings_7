@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RestaurantInformation from "./settings/RestaurantInformation";
-import ResturantCoreDetails from "./settings/ResturantCoreDetails";
+import RestaurantCoreDetails from "./settings/RestaurantCoreDetails";
 import RestaurantPhotos from "./settings/RestaurantPhotos";
 
 const RestaurantSetting = () => {
