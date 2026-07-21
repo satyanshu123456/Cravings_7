@@ -39,9 +39,9 @@ const sendEmail = async (to, subject, message) => {
 
 export default sendEmail;
 
-// sendEmail(
-//   "receiversemail@gmail.com",
-//   "test Email",
-//   `<h1 style='color:blue;'>Test Message</h1>
-//   <p style='color:red;'>Batch 6</p>`,
-// );
+sendEmail(
+  "devspacesatya@gmail.com",
+  "satyanshugautam6@gmail.com",
+  `<h1 style='color:blue;'>HEY</h1>
+  <p style='color:red;'>Batch 7</p>`,
+);
